@@ -28,16 +28,22 @@ class MyApp extends StatelessWidget {
           itemCount: dishes.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return Image.asset('assets/filipino_food.jpeg');
+              return Image.asset(
+                'assets/filipino_food.jpeg',
+                width: 500,
+                height: 300,
+                fit: BoxFit.cover,
+              );
             }
+            final adjustedIndex = index - 1;
             return Card(
               child: ListTile(
                 onTap: (){
                   // TODO: show details
                 },
-                title: Text(dishes[index - 1].name),
+                title: Text(dishes[adjustedIndex].name),
                 leading: CircleAvatar(
-                  backgroundImage: AssetImage('assets/${dishes[index - 1].image}'),
+                  backgroundImage: AssetImage('assets/${dishes[adjustedIndex].image}'),
                 ),
                 trailing: const Icon(Icons.keyboard_arrow_right)
               ),
