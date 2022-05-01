@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'details_page.dart';
+import 'dish_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Flutter Basics Exercise',
+      routes: {
+        Details.routeName: (context) => const Details(),
+      },
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Top 5 Favorite Dishes'),
@@ -39,7 +44,11 @@ class MyApp extends StatelessWidget {
             return Card(
               child: ListTile(
                 onTap: (){
-                  // TODO: show details
+                  Navigator.pushNamed(
+                    context,
+                    Details.routeName,
+                    arguments: dishes[adjustedIndex]
+                  );
                 },
                 title: Text(dishes[adjustedIndex].name),
                 leading: CircleAvatar(
@@ -53,11 +62,4 @@ class MyApp extends StatelessWidget {
       )
     );
   }
-}
-
-class Dish {
-  String name;
-  String image;
-
-  Dish(this.name, this.image);
 }
