@@ -16,6 +16,11 @@ class MyApp extends StatelessWidget {
           title: const Text('Top 5 Favorite Dishes'),
           centerTitle: true,
         ),
+        body: ListView(
+          children: [
+            Image.asset('assets/filipino_food.jpeg')
+          ],
+        ),
       )
     );
   }
