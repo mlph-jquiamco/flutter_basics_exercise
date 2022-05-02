@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Dish> dishes = DishService().generateMockDishes();
+    final List<Dish> _dishes = DishService().generateMockDishes();
 
     List<Card> _generateDishList(List<Dish> dishes) {
       return [for (final dish in dishes) Card(
@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
             height: 300,
             fit: BoxFit.cover,
           ),
-          ..._generateDishList(dishes)
+          ..._generateDishList(_dishes)
         ],
       ),
     );

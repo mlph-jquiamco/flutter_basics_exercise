@@ -21,21 +21,28 @@ class Details extends StatelessWidget {
             height: 400,
             fit: BoxFit.cover,
           ),
-          for (final ingredient in args.ingredients) Text(ingredient),
+          _setIngredientsSection(args.ingredients),
           for (final procedure in args.procedures) Text(procedure)
         ],
       )
     );
   }
 
-  // Widget setIngredientsSection(List<String>? ingredients) {
-  //   if (ingredients == null) {
-  //     return Container();
-  //   }
-  //   return ListView(
-  //     children: [
-  //       for (final ingredient in ingredients) Text(ingredient),
-  //     ]
-  //   );
-  // }
+  Widget _setIngredientsSection(List<String> ingredients) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: ListView(
+        children: [
+          const Text('Ingredients'),
+          ..._convertToList(ingredients)
+        ],
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics()
+      )
+    );
+  }
+
+  List<Widget> _convertToList(List<String> values) {
+    return [for (final value in values) Text(value)];
+  }
 }
