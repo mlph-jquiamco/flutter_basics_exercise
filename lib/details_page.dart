@@ -56,7 +56,20 @@ class Details extends StatelessWidget {
     return [for (final value in values) Container(
       margin: const EdgeInsets.only(left: 8),
       padding: const EdgeInsets.all(4),
-      child: Text(value),
+      child: Row (
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 8,
+            width: 8,
+            margin: const EdgeInsets.only(right: 8, top: 4),
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(14)),
+          ),
+          Flexible(child: Text(value))
+        ],
+      ),
     )];
   }
 }
