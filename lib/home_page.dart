@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basics_exercise/dish_service.dart';
 import 'details_page.dart';
 import 'dish_model.dart';
 
@@ -7,13 +8,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Dish> dishes = [
-      Dish('Bagnet', 'bagnet.jpeg'),
-      Dish('Chicken Bbq', 'chicken_bbq.jpeg'),
-      Dish('Chicken Curry', 'chicken_curry.jpeg'),
-      Dish('Chicken Macaroni', 'chicken_macaroni.jpeg'),
-      Dish('Pork Adobo', 'pork_adobo.jpeg')
-    ];
+    final List<Dish> dishes = DishService().generateMockDishes();
 
     return Scaffold(
       appBar: AppBar(
@@ -35,6 +30,7 @@ class Home extends StatelessWidget {
           return Card(
             child: ListTile(
               onTap: (){
+                print(dishes[adjustedIndex].procedures);
                 Navigator.pushNamed(
                   context,
                   Details.routeName,

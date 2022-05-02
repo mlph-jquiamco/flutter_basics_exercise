@@ -20,9 +20,22 @@ class Details extends StatelessWidget {
             width: 800,
             height: 400,
             fit: BoxFit.cover,
-          )
+          ),
+          for (final ingredient in args.ingredients) Text(ingredient),
+          for (final procedure in args.procedures) Text(procedure)
         ],
       )
     );
   }
+
+  // Widget setIngredientsSection(List<String>? ingredients) {
+  //   if (ingredients == null) {
+  //     return Container();
+  //   }
+  //   return ListView(
+  //     children: [
+  //       for (final ingredient in ingredients) Text(ingredient),
+  //     ]
+  //   );
+  // }
 }
