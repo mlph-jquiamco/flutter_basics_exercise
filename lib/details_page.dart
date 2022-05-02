@@ -21,19 +21,19 @@ class Details extends StatelessWidget {
               height: 400,
               fit: BoxFit.cover,
             ),
-            _setIngredientsSection(args.ingredients),
-            _setProceduresSection(args.procedures)
+            _setSection(context, 'Ingredients', args.ingredients),
+            _setSection(context, 'Procedures', args.procedures)
           ],
         )
     );
   }
 
-  Widget _setIngredientsSection(List<String> ingredients) {
+  Widget _setSection(BuildContext context, String title, List<String> ingredients) {
     return Container(
-        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.all(16),
         child: ListView(
             children: [
-              const Text('Ingredients'),
+              _setHeader(context, title),
               ..._convertToList(ingredients)
             ],
             shrinkWrap: true,
@@ -42,21 +42,21 @@ class Details extends StatelessWidget {
     );
   }
 
-  Widget _setProceduresSection(List<String> procedures) {
+  Widget _setHeader(BuildContext context, String title) {
     return Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        child: ListView(
-            children: [
-              const Text('Procedures'),
-              ..._convertToList(procedures)
-            ],
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics()
-        )
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.headline6,
+      ),
     );
   }
 
   List<Widget> _convertToList(List<String> values) {
-    return [for (final value in values) Text(value)];
+    return [for (final value in values) Container(
+      margin: const EdgeInsets.only(left: 8),
+      padding: const EdgeInsets.all(4),
+      child: Text(value),
+    )];
   }
 }
