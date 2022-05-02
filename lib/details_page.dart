@@ -10,35 +10,49 @@ class Details extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Dish;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(args.name),
-      ),
-      body: ListView(
-        children: [
-          Image.asset(
-            'assets/${args.image}',
-            width: 800,
-            height: 400,
-            fit: BoxFit.cover,
-          ),
-          _setIngredientsSection(args.ingredients),
-          for (final procedure in args.procedures) Text(procedure)
-        ],
-      )
+        appBar: AppBar(
+          title: Text(args.name),
+        ),
+        body: ListView(
+          children: [
+            Image.asset(
+              'assets/${args.image}',
+              width: 800,
+              height: 400,
+              fit: BoxFit.cover,
+            ),
+            _setIngredientsSection(args.ingredients),
+            _setProceduresSection(args.procedures)
+          ],
+        )
     );
   }
 
   Widget _setIngredientsSection(List<String> ingredients) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: ListView(
-        children: [
-          const Text('Ingredients'),
-          ..._convertToList(ingredients)
-        ],
-        shrinkWrap: true,
-        physics: const ClampingScrollPhysics()
-      )
+        margin: const EdgeInsets.only(bottom: 16),
+        child: ListView(
+            children: [
+              const Text('Ingredients'),
+              ..._convertToList(ingredients)
+            ],
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics()
+        )
+    );
+  }
+
+  Widget _setProceduresSection(List<String> procedures) {
+    return Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        child: ListView(
+            children: [
+              const Text('Procedures'),
+              ..._convertToList(procedures)
+            ],
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics()
+        )
     );
   }
 

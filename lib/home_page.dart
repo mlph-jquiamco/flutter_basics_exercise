@@ -10,25 +10,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Dish> _dishes = DishService().generateMockDishes();
 
-    List<Card> _generateDishList(List<Dish> dishes) {
-      return [for (final dish in dishes) Card(
-        child: ListTile(
-            onTap: (){
-              Navigator.pushNamed(
-                  context,
-                  Details.routeName,
-                  arguments: dish
-              );
-            },
-            title: Text(dish.name),
-            leading: CircleAvatar(
-              backgroundImage: AssetImage('assets/${dish.image}'),
-            ),
-            trailing: const Icon(Icons.keyboard_arrow_right)
-        ),
-      )];
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Top 5 Favorite Dishes'),
@@ -42,9 +23,28 @@ class Home extends StatelessWidget {
             height: 300,
             fit: BoxFit.cover,
           ),
-          ..._generateDishList(_dishes)
+          ..._generateDishList(context, _dishes)
         ],
       ),
     );
+  }
+
+  List<Card> _generateDishList(BuildContext context, List<Dish> dishes) {
+    return [for (final dish in dishes) Card(
+      child: ListTile(
+          onTap: (){
+            Navigator.pushNamed(
+                context,
+                Details.routeName,
+                arguments: dish
+            );
+          },
+          title: Text(dish.name),
+          leading: CircleAvatar(
+            backgroundImage: AssetImage('assets/${dish.image}'),
+          ),
+          trailing: const Icon(Icons.keyboard_arrow_right)
+      ),
+    )];
   }
 }
