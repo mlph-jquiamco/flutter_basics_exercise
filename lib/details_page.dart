@@ -28,13 +28,13 @@ class Details extends StatelessWidget {
     );
   }
 
-  Widget _setSection(BuildContext context, String title, List<String> ingredients) {
+  Widget _setSection(BuildContext context, String title, List<String> items) {
     return Container(
         padding: const EdgeInsets.all(16),
         child: ListView(
             children: [
               _setHeader(context, title),
-              ..._convertToList(ingredients)
+              ..._convertToList(items)
             ],
             shrinkWrap: true,
             physics: const ClampingScrollPhysics()
